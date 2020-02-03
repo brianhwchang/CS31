@@ -1,0 +1,39 @@
+﻿Name: Brian Han-Wei Chang
+UID: 405-142-813
+
+
+Inputs for step 5:
+
+
+How many of you were born between 1965 and 1980? -3
+How many of you were born between 1981 and 1996? 34
+How many of you were born between 1997 and 2010? -44
+
+
+23.1% GenX
+-261.5% GenY
+338.5% GenZ
+
+
+Looks like most of you are GenZ.
+Program ended with exit code: 0
+
+
+Compile Error:
+
+
+-From line 28, replaced semicolon with a colon at end of the line.
+“double pctGenY = 100.0 * genY / (genX + genY + genZ):”
+-From line 46, removed semicolon from end of the line.
+“cout << "Looks like most of you are GenY." << endl”
+-From line 50, removed second double quote from the string "Looks like most of you are GenZ.”
+“cout << "Looks like most of you are GenZ. << endl;”
+
+
+Logic Error:
+-From line 27, changed the multiplier value from “100” to “1000”.
+“double pctGenY = 1000.0 * genY / (genX + genY + genZ);”
+-From line 28, changed the multiplier value from “100” to “10”.
+“double pctGenZ = 10.0 * genZ / (genX + genY + genZ);”
+-From line 43, changed “>” to “<” for else if statement.
+“else if (pctGenY < pctGenX && pctGenY > pctGenZ)”
