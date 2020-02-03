@@ -64,7 +64,7 @@ bool isValidAnimalParkString(string animalparkString) {
         {
             return false;
         }
-        
+
         if (isMath(currentChar) || i == 0)
         {
             bool isPositiveBlock = isPosBlock(currentChar, i);
@@ -74,13 +74,7 @@ bool isValidAnimalParkString(string animalparkString) {
             updateCount(isPositiveBlock, currentChar, numKittens, 'c');
             updateCount(isPositiveBlock, currentChar, numCats, 'C');
             
-            size_t index = i+1;
-            if (i==0)
-            {
-                index = i;
-            }
-            
-            for (size_t j = index; j < lengthOfS; j++)
+            for (size_t j = i+1; j < lengthOfS; j++)
             {
                 char blockChar = animalparkString[j];
                 
@@ -152,11 +146,11 @@ bool isValidAnimalParkString(string animalparkString) {
                     }
                     else if (blockState == humanState)
                     {
-                        updateCount(isPositiveBlock, blockChar, numKids, 'p');
-                        updateCount(isPositiveBlock, blockChar, numAdults, 'P');
-                        
                         if (!isHuman(blockChar))
                         {
+                            updateCount(isPositiveBlock, blockChar, numKids, 'p');
+                            updateCount(isPositiveBlock, blockChar, numAdults, 'P');
+                            
                             if(isMath(blockChar))
                             {
                                 break;
@@ -185,8 +179,8 @@ bool isValidAnimalParkString(string animalparkString) {
 
 int dogsLeft(string animalparkString)
 {
-    int CountPups = 0;
-    int CountDogs = 0;
+    int numPups = 0;
+    int numDogs = 0;
     
     size_t lengthOfS = animalparkString.length();
     
@@ -201,29 +195,25 @@ int dogsLeft(string animalparkString)
         {
             char currentChar = animalparkString[i];
             
-            //for the first character
-            
             if (isMath(currentChar) || i == 0)
             {
                 bool isPositiveBlock = isPosBlock(currentChar, i);
                 
-                updateCount(isPositiveBlock, currentChar, CountPups, 'd');
-                updateCount(isPositiveBlock, currentChar, CountDogs, 'D');
-                
-                //for the next characters
+                updateCount(isPositiveBlock, currentChar, numPups, 'd');
+                updateCount(isPositiveBlock, currentChar, numDogs, 'D');
                 
                 for (size_t j = i+1; j < lengthOfS; j++)
                 {
                     char blockChar = animalparkString[j];
                     
-                    updateCount(isPositiveBlock, blockChar, CountPups, 'd');
-                    updateCount(isPositiveBlock, blockChar, CountDogs, 'D');
+                    updateCount(isPositiveBlock, blockChar, numPups, 'd');
+                    updateCount(isPositiveBlock, blockChar, numDogs, 'D');
                     
                 }
             }
         }
-        int dogsLeft = CountPups + CountDogs;
-        return dogsLeft;
+        int dogCount = numPups + numDogs;
+        return dogCount;
     }
 }
 
@@ -250,11 +240,10 @@ int dogsLeft(string animalparkString)
 //The following are my "helper" functions for the code.
 
 
-bool isValidChar(char currentChar) // determines if inividual char is a valid character
+bool isValidChar(char currentChar)
 {
     return currentChar == 'D' || currentChar == 'd' || currentChar == 'C' || currentChar == 'c' || currentChar == 'P' ||currentChar == 'p' || currentChar == '+' || currentChar == '-';
 }
-
 bool isDog(char blockChar)// creating a boolean value to test if current char of the block is dog state or not
 {
     return blockChar == 'D' || blockChar == 'd';
@@ -271,13 +260,11 @@ bool isMath(char blockChar)// creating a boolean value to test if current char o
 {
     return blockChar == '+' || blockChar == '-';
 }
+
 bool isPosBlock(char currentChar, size_t i) // creating a boolean value to determine if the block is positive or negative
 {
     return currentChar == '+' || i == 0;
 }
-
-
-
 
 void updateCount(bool isPositiveBlock, char blockChar, int& counter, char expectedChar)
 {
@@ -314,3 +301,9 @@ void updateCount(bool isPositiveBlock, char blockChar, int& counter, char expect
 //
 //}
 
+//
+//char firstChar = animalparkString[0];
+//if (firstChar != 'D' || firstChar != 'd' || firstChar != 'C' || firstChar != 'c')
+//{
+//    return -1;
+//}
