@@ -17,7 +17,7 @@ using namespace std;
 int locateMaximum(const string array[], int n);
 bool hasDuplicates( const string array[ ], int n );
 int countSs( const string array[ ], int n );
-//int shiftLeft( string array[ ], int n, int amount, string placeholderToFillEmpties );
+int shiftLeft( string array[ ], int n, int amount, string placeholderToFillEmpties );
 //bool isInDecreasingOrder( const string array[ ], int n );
 //bool matchingValuesTogether( const string array[ ], int n );
 //int divide( string array[ ], int n, string divider );
@@ -100,26 +100,45 @@ int countSs( const string array[ ], int n )
 int shiftLeft( string array[ ], int n, int amount, string placeholderToFillEmpties )
 {
     if (n <= 0)
-        return (0);
+        return (0); //returning 0 if string is empty or less than 0
     
     int shiftCount = 0;
     int myAmount = amount;
-    int i;
+    int i; // initialising var 'i' outside of for loop so I can continue to use it for the while loop.
     
     for (i = 0; myAmount < n; i++)
     {
-        array[i] = array[myAmount];
+        array[i] = array[myAmount]; //replacing leading elements with later elements
         myAmount++;
     }
     
     while (i < n)
     {
-        array[i] = placeholderToFillEmpties;
+        array[i] = placeholderToFillEmpties; //replacing later elements with placeholders
         shiftCount++;
         i++;
     }
-    return(shiftCount);
+    return(shiftCount); //returning number of placeholders inserted
 }
+
+//--------------------------------------------------------------------------------------------------
+
+bool isInDecreasingOrder( const string array[ ], int n )
+{
+    if (n <= 0)
+        return false;
+    
+    for (int i = 1; i < n; i++) //iterating through the array one element at a time
+    {
+        if (array[i-1] < array[i]) //creating a condition statement that check if current element is larger than preceding element
+            return false; //if current > preceding, return false.
+    }
+    return true;
+}
+
+
+
+
 
 
 
@@ -130,18 +149,8 @@ int shiftLeft( string array[ ], int n, int amount, string placeholderToFillEmpti
 //{
 //    return( false );
 //}
-//
-//bool isInDecreasingOrder( const string array[ ], int n )
-//{
-//    return( false );
-//}
-//
+
 //int divide( string array[ ], int n, string divider )
 //{
 //    return( false );
-//}
-//
-//int shiftLeft( string array[ ], int n, int amount, string placeholderToFillEmpties )
-//{
-//    return( 0 );
 //}
