@@ -18,9 +18,10 @@ int locateMaximum(const string array[], int n);
 bool hasDuplicates( const string array[ ], int n );
 int countSs( const string array[ ], int n );
 int shiftLeft( string array[ ], int n, int amount, string placeholderToFillEmpties );
-//bool isInDecreasingOrder( const string array[ ], int n );
-//bool matchingValuesTogether( const string array[ ], int n );
+bool isInDecreasingOrder( const string array[ ], int n );
+bool matchingValuesTogether( const string array[ ], int n );
 //int divide( string array[ ], int n, string divider );
+
 
 int main(int argc, const char * argv[]) {
     std::cout << "Hello, World!\n";
@@ -35,6 +36,7 @@ int main(int argc, const char * argv[]) {
 
 
 //-------------------------------------------------------------------------------------------------
+
 
 int locateMaximum(const string array[], int n)
 {
@@ -55,7 +57,9 @@ int locateMaximum(const string array[], int n)
     return largestInt; // returning index
 }
 
+
 //--------------------------------------------------------------------------------------------------
+
 
 bool hasDuplicates( const string array[ ], int n )
 {
@@ -72,7 +76,9 @@ bool hasDuplicates( const string array[ ], int n )
     return false;
 }
 
+
 //--------------------------------------------------------------------------------------------------
+
 
 int countSs( const string array[ ], int n )
 {
@@ -95,7 +101,9 @@ int countSs( const string array[ ], int n )
     return (sCount);
 }
 
+
 //--------------------------------------------------------------------------------------------------
+
 
 int shiftLeft( string array[ ], int n, int amount, string placeholderToFillEmpties )
 {
@@ -121,7 +129,9 @@ int shiftLeft( string array[ ], int n, int amount, string placeholderToFillEmpti
     return(shiftCount); //returning number of placeholders inserted
 }
 
+
 //--------------------------------------------------------------------------------------------------
+
 
 bool isInDecreasingOrder( const string array[ ], int n )
 {
@@ -137,20 +147,36 @@ bool isInDecreasingOrder( const string array[ ], int n )
 }
 
 
+//--------------------------------------------------------------------------------------------------
 
 
+//so we got a problem here when more than 2 duplicates occur in a row
+
+bool matchingValuesTogether( const string array[ ], int n )
+{
+    if (!hasDuplicates(array, n)) //checking that string has duplicates at all
+        return true;
+    
+    for (int i = 0; i < n ; i++) //outer loop. Looping through array elements with counter i
+    {
+        string currentString = array[i];
+        
+        for (int j = i+1; j < n; j++) // inner loop. Looping through array elements with counter j, where j = 1+1
+        {
+            if (array[j] == currentString && array[j-1] != array[j] ) // if the element match but aren't sequential, return false.
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
 
 
+//--------------------------------------------------------------------------------------------------
 
 
-
-
-//bool matchingValuesTogether( const string array[ ], int n )
-//{
-//    return( false );
-//}
-
-//int divide( string array[ ], int n, string divider )
-//{
-//    return( false );
-//}
+int divide( string array[ ], int n, string divider )
+{
+    return( false );
+}
