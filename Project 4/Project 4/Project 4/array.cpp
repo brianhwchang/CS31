@@ -82,12 +82,13 @@ int countSs( const string array[ ], int n )
     
     for (int i = 0; i < n ; i++) // walking through the array 1 element at a time. (Outer loop)
     {
-        string currentString = array[i];
-        for (int j = 0; j < currentString.length() ; j++)
+        string currentString = array[i]; //setting current element of the array as currentString
+        
+        for (int j = 0; j < currentString.length() ; j++) // walking through currentString char by char
         {
             char currentChar = currentString[j];
             
-            if (currentChar == 's' || currentChar == 'S')
+            if (currentChar == 's' || currentChar == 'S') // incrementing counter if there is an 's' or 'S'.
                 sCount++;
         }
     }
@@ -96,10 +97,29 @@ int countSs( const string array[ ], int n )
 
 //--------------------------------------------------------------------------------------------------
 
-//int shiftLeft( string array[ ], int n, int amount, string placeholderToFillEmpties )
-//{
-//    return( 0 );
-//}
+int shiftLeft( string array[ ], int n, int amount, string placeholderToFillEmpties )
+{
+    if (n <= 0)
+        return (0);
+    
+    int shiftCount = 0;
+    int myAmount = amount;
+    int i;
+    
+    for (i = 0; myAmount < n; i++)
+    {
+        array[i] = array[myAmount];
+        myAmount++;
+    }
+    
+    while (i < n)
+    {
+        array[i] = placeholderToFillEmpties;
+        shiftCount++;
+        i++;
+    }
+    return(shiftCount);
+}
 
 
 
