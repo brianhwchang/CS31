@@ -25,15 +25,31 @@ int divide( string array[ ], int n, string divider );
 
 void swap( string *a , string *b);
 
-int main(int argc, const char * argv[]) {
+int main()
+{
     std::cout << "Hello, World!\n";
-    string folks[8] = {"samwell", "jon", "margaery", "daenerys","tyrion", "sansa", "howard123", "jon"};
     
+    string folks[8] = {"samwell", "jon", "margaery", "daenerys","tyrion", "sansa", "howie", "jon"};
     string numbers[5] = { "5", "4", "3", "2", "15" };
+    string letters[7] = { "a", "b", "c", "d", "e", "f", "g"};
+    string match[6] = {"q", "w", "w", "r", "t", "t"};
+    string mismatch[6] = {"q", "w", "q", "r", "s", "t"};
     
-    cout << divide(numbers, 5, "21");
+    assert(hasDuplicates(folks, 8)==true); //positive test case for hasDupliates fxn.
+    assert(hasDuplicates(folks, 7)==false); //negative test case for hasDuplicates fxn.
+    assert(locateMaximum(numbers, 5)==0); //testing maximum fxn with numerical strings
+    assert(locateMaximum(folks, 8)==4); //testing maxium fxn with strings
+    assert(locateMaximum(letters, 7)!=2); //negative test case
+    assert(countSs(folks, 5)==2); //testing with names
+    assert(countSs(numbers, 5)==0); //testing with numbers
+    assert(isInDecreasingOrder(numbers, 5)==true); // pos test case
+    assert(isInDecreasingOrder(folks, 7)==false); // neg test case
+    assert(matchingValuesTogether(match, 6)==true); // pos test case
+    assert(matchingValuesTogether(mismatch, 6)==false); //negative test case
+    assert(divide(numbers, 5, "3")==2); //testing divider fxn
+    assert(divide(letters, 7, "d")==3); //testing with letters
     
-    
+    cout << "All tests succeeded" << endl;
     return 0;
 }
 
@@ -192,14 +208,13 @@ int divide( string array[ ], int n, string divider )
     
     for (int k = 0; k < n; k++) //finding the index of the first value in the sorted list that is greater than the divider.
     {
-        if (array[k] > divider)
-            return k;
+        if (array[k] >= divider)
+            return k; //returning the index of the first element that is greater than the divider in the sorted string.
     }
-    
     return 0;
 }
 
-void swap( string *a , string *b)
+void swap( string *a , string *b) // creating a helper function to swap elements in the array.
 {
     string temp = *a;
     *a = *b;
