@@ -11,6 +11,7 @@
 #include <string>
 #include <cctype>
 #include <cassert>
+#include <vector>
 
 using namespace std;
 
@@ -20,17 +21,19 @@ int countSs( const string array[ ], int n );
 int shiftLeft( string array[ ], int n, int amount, string placeholderToFillEmpties );
 bool isInDecreasingOrder( const string array[ ], int n );
 bool matchingValuesTogether( const string array[ ], int n );
-//int divide( string array[ ], int n, string divider );
+int divide( string array[ ], int n, string divider );
 
+void swap( string *a , string *b);
 
 int main(int argc, const char * argv[]) {
     std::cout << "Hello, World!\n";
-    string folks[8] = {
-       "samwell", "jon", "margaery", "daenerys",
-       "tyrion", "sansa", "howard123", "jon"
-    };
-
-    locateMaximum(folks, 8);
+    string folks[8] = {"samwell", "jon", "margaery", "daenerys","tyrion", "sansa", "howard123", "jon"};
+    
+    string numbers[5] = { "5", "4", "3", "2", "15" };
+    
+    cout << divide(numbers, 5, "21");
+    
+    
     return 0;
 }
 
@@ -149,8 +152,7 @@ bool isInDecreasingOrder( const string array[ ], int n )
 
 //--------------------------------------------------------------------------------------------------
 
-
-//so we got a problem here when more than 2 duplicates occur in a row
+// double check if this works for multiple duplicates in a row.
 
 bool matchingValuesTogether( const string array[ ], int n )
 {
@@ -175,8 +177,108 @@ bool matchingValuesTogether( const string array[ ], int n )
 
 //--------------------------------------------------------------------------------------------------
 
-
 int divide( string array[ ], int n, string divider )
 {
-    return( false );
+    for (int i = 0; i < (n-1); i++) //Using bubblesort to sort the list
+    {
+        for (int j = 0; j < n-1-i; j++)
+        {
+            if (array[j] > array[j+1])
+            {
+                swap(&array[j], &array[j + 1]); //calling a function I created to swap the values.
+            }
+        }
+    }
+    
+    for (int k = 0; k < n; k++) //finding the index of the first value in the sorted list that is greater than the divider.
+    {
+        if (array[k] > divider)
+            return k;
+    }
+    
+    return 0;
 }
+
+void swap( string *a , string *b)
+{
+    string temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+//int divide( string array[ ], int n, string divider )
+//{
+//
+//    int count = 0;
+//    vector<string> greater;
+//    vector<string> lesser;
+//
+//    for (int i = 0; i < n; i++) //for loop that runs through array and sorts into greater and lesser lists.
+//    {
+//        if (array[i] < divider)
+//        {
+//            lesser.push_back(array[i]);
+//            count++;
+//        }
+//        else
+//            greater.push_back(array[i]);
+//        //what if array[i] = divider though?
+//    }
+//
+//    int position = count;
+//
+//    for (int j = 0; j < lesser.size(); j++) //replacing the first 'n' elements of the array with 'lesser' vector
+//    {
+//        array[j] = lesser[j];
+//    }
+//
+//    for (int k = count; k < greater.size(); k++)
+//    {
+//        array[k] = greater[k]; //replacing the remaining elements of the array with 'greater' vector.
+//    }
+//
+//    return(position);
+//}
+
+//I could create a "greater than" array and a "lesser than" array using the fxn to sort them into lists first
+//then reassign the values starting with the lesser than array follow by great than
+//there would be some counter element be thats shared between the assinging for loops.
+
+//I'd need to create a list that allows me to just add elements (like .append for python) so it can grow longer without knowing the length at first.
+
+
+//int divide (string array[ ], int n, string divider)
+//{
+//    string newArray[n];
+//
+//    int start = 0;
+//    int end = n - 1;
+//
+//    for (int i = 0; i < n; i++)
+//    {
+//        if (array[i] < divider)
+//        {
+//            newArray[start] = array[i];
+//            start++;
+//        }
+//        else
+//        {
+//            newArray[end] = array[i];
+//            end--;
+//        }
+//    }
+//
+//    for (int i = 0; i < n; i++) {
+//        array[i] = newArray[i];
+//    }
+//
+//    for (int i = 0; i < n; i++)
+//    {
+//        if (newArray[i] > divider)
+//        {
+//            return i;
+//        }
+//    }
+//
+//    return 0;
+//}
