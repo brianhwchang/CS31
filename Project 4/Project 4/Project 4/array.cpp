@@ -32,7 +32,7 @@ int main()
     string folks[8] = {"samwell", "jon", "margaery", "daenerys","tyrion", "sansa", "howie", "jon"};
     string numbers[5] = { "5", "4", "3", "2", "15" };
     string letters[7] = { "a", "b", "c", "d", "e", "f", "g"};
-    string match[6] = {"q", "w", "w", "r", "t", "t"};
+    string match[6] = {"q", "w", "w", "t", "t", "t"};
     string mismatch[6] = {"q", "w", "q", "r", "s", "t"};
     
     assert(hasDuplicates(folks, 8)==true); //positive test case for hasDupliates fxn.
@@ -168,7 +168,6 @@ bool isInDecreasingOrder( const string array[ ], int n )
 
 //--------------------------------------------------------------------------------------------------
 
-// double check if this works for multiple duplicates in a row.
 
 bool matchingValuesTogether( const string array[ ], int n )
 {
