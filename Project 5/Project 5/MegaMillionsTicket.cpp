@@ -8,7 +8,9 @@
 
 #include "MegaMillionsTicket.h"
 #include <iostream>
+#include <string>
 
+using namespace std;
 
 MegaMillionsTicket::MegaMillionsTicket(int ball1, int ball2, int ball3, int ball4, int ball5, int megaBall)
 {

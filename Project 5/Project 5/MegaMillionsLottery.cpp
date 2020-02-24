@@ -12,9 +12,11 @@
 #include <iostream>
 #include <string>
 
-int hasDuplicates( const int ticket[ ], const int lottery[]);
-bool megaMatch( const int ticket[], const int lottery[]);
+using namespace std;
 
+int matchingNums( const int ticket[ ], const int lottery[]);
+bool megaMatch( const int ticket[], const int lottery[]);
+bool hasDuplicates( const int array[ ], int n );
 
 MegaMillionsLottery::MegaMillionsLottery() //creating a constructor that takes no arguements to randomly generate 5 balls and a mega ball
 {
@@ -51,16 +53,20 @@ MegaMillionsLottery::MegaMillionsLottery(int ball1, int ball2, int ball3, int ba
 MegaMillionsTicket MegaMillionsLottery::quickPick() //generating a ticket using the random number generator.
 {
     RandomNumber randomNumGenerator(1, 75);
-    int genNum1 = randomNumGenerator.random();
-    int genNum2 = randomNumGenerator.random();
-    int genNum3 = randomNumGenerator.random();
-    int genNum4 = randomNumGenerator.random();
-    int genNum5 = randomNumGenerator.random();
-    
     RandomNumber randomMegaGenerator(1, 25);
+    
+    int testTicket[5];
+    
+    do {
+        for (int i = 0; i < 5; i++) {
+            testTicket[i] = randomNumGenerator.random();
+        }
+        
+    } while (hasDuplicates(testTicket, 5));
+    
     int genMegaNum = randomMegaGenerator.random();
     
-    MegaMillionsTicket ticket(genNum1, genNum2, genNum3, genNum4, genNum5, genMegaNum);
+    MegaMillionsTicket ticket(testTicket[0], testTicket[1], testTicket[2], testTicket[3], testTicket[4], genMegaNum);
     return ticket;
 }
 
@@ -70,7 +76,7 @@ MegaMillionsLottery::WinningPossibility MegaMillionsLottery::checkTicket(MegaMil
     int ticketnumbers[6] = {ticket.getBall1(), ticket.getBall2(), ticket.getBall3(), ticket.getBall4(), ticket.getBall5(), ticket.getMegaBall()};
     int lotterynumbers[6] = {mBall1, mBall2, mBall3, mBall4, mBall5, mMegaBall};
     
-    int ballsMatched = hasDuplicates(ticketnumbers, lotterynumbers); //using my helper function to count the number of balls matched.
+    int ballsMatched = matchingNums(ticketnumbers, lotterynumbers); //using my helper function to count the number of balls matched.
     
     switch (ballsMatched) {
         case 1:
@@ -86,7 +92,7 @@ MegaMillionsLottery::WinningPossibility MegaMillionsLottery::checkTicket(MegaMil
             return megaMatch(ticketnumbers, lotterynumbers) ? MegaMillionsLottery::FOURPLUSMEGABALL : MegaMillionsLottery::FOUR ;
             break;
         case 5:
-            return megaMatch(ticketnumbers, lotterynumbers) ? MegaMillionsLottery::ONEPLUSMEGABALL : MegaMillionsLottery::FIVE ;
+            return megaMatch(ticketnumbers, lotterynumbers) ? MegaMillionsLottery::FIVEPLUSMEGABALL : MegaMillionsLottery::FIVE ;
             break;
         default:
             return megaMatch(ticketnumbers, lotterynumbers) ? MegaMillionsLottery::MEGABALL : MegaMillionsLottery::NOTWINNING ;
@@ -169,7 +175,7 @@ int MegaMillionsLottery::getMegaBall()
 //-----------------------------------------------------------------------------------------------------------------------------------
 //helper functions below
 
-int hasDuplicates( const int ticket[ ], const int lottery[])
+int matchingNums( const int ticket[ ], const int lottery[])
 {
     int ballsMatched = 0;
     
@@ -189,3 +195,17 @@ bool megaMatch( const int ticket[], const int lottery[]) // creating a flag to c
     else
         return false;
 }
+
+
+bool hasDuplicates( const int array[ ], int n )
+{
+
+    for (int i = 0; i < n ; i++) // walking through the array 1 element at a time. (Outer loop)
+    {
+        for (int j = i+1; j < n ; j++) // walking through the array 1 element at a time. (Inner loop)
+        if (array[i]==array[j]) // comparing [i] and [j] indexes to find duplicates
+            return true;
+    }
+    return false;
+}
+
