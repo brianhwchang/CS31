@@ -135,7 +135,7 @@ string MegaMillionsLottery::whatHappened(MegaMillionsTicket ticket)
         case FIVE:
             return "You matched 5 balls!";
         default:
-            break;
+            return "Error";
     }
 }
 
@@ -181,9 +181,11 @@ int matchingNums( const int ticket[ ], const int lottery[])
     
     for (int i = 0; i < 5 ; i++) // walking through the array 1 element at a time. (Outer loop)
     {
-        for (int j = i; j < 5 ; j++) // walking through the array 1 element at a time. (Inner loop)
-        if (lottery[i]==ticket[j]) // comparing [i] and [j] indexes to find duplicates
+        for (int j = 0; j < 5 ; j++) // walking through the array 1 element at a time. (Inner loop)
+        {
+            if (lottery[i]==ticket[j]) // comparing [i] and [j] indexes to find duplicates
             ballsMatched++; //incrementing match counter
+        }
     }
     return ballsMatched;
 }

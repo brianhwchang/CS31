@@ -7,16 +7,14 @@
 //
 
 #include <iostream>
+#include <cassert>
 #include "MegaMillionsLottery.h"
 #include "MegaMillionsTicket.h"
 
-
-
-
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+int main() {
+    MegaMillionsTicket t(1,2,3,4,5,6);
+    MegaMillionsLottery l(6,5,4,3,2,1);
+    assert( l.checkTicket( t ) == MegaMillionsLottery::WinningPossibility::FOUR);
 }
 
 
