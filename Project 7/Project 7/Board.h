@@ -30,15 +30,15 @@ namespace cs31
         int getHumanSpot() const;
         int  getComputerSpot() const;
  
-        // CS 31 TODO: identify  that computer won
+        // CS 31 identify  that computer won
         void markComputerAsWinner();
-        // CS 31 TODO: identify that the human won
+        // CS 31 identify that the human won
         void markHumanAsWinner();
-        // CS 31 TODO: if the game is over, determine if the human has won
+        // CS 31 if the game is over, determine if the human has won
         bool isHumanWinner() const;
-        // CS 31 TODO: identify whether or not the game has ended
+        // CS 31 identify whether or not the game has ended
         void setGameOver( bool value );
-        // CS 31 TODO: determine if the game has ended
+        // CS 31 determine if the game has ended
         bool isGameOver( ) const;
         
         // the major operation of board

@@ -16,31 +16,33 @@ namespace cs31
 
     }
     
-    // CS 31 TODO:  trivial setter operation
+    // CS 31 trivial setter operation
     void Board::setGameOver( bool value )
     {
-        mGameOver = true;
+        mGameOver = value;
     }
     
-    // CS 31 TODO:  trivial getter operation
+    // CS 31 trivial getter operation
     bool Board::isGameOver( ) const
     {
         return ( mGameOver );
     }
 
-    // CS 31 TODO:  trivial setter operation
+    // CS 31 trivial setter operation
     void Board::markHumanAsWinner()
     {
+        mGameOver = true;
         mHumanWon = true;
     }
     
-    // CS 31 TODO:  trivial setter operation
+    // CS 31 trivial setter operation
     void Board::markComputerAsWinner()
     {
+        mGameOver = true;
         mHumanWon = false;
     }
     
-    // CS 31 TODO:  trivial getter operation
+    // CS 31 trivial getter operation
     bool Board::isHumanWinner() const
     {
         return( mHumanWon );

@@ -61,46 +61,50 @@ namespace cs31
     // etc...
     void Player::rolled( int spot )
     {
-        // using a switch to call the corresponding boolean function to the interger arguement given. Update the boolean values of the member bools.
-        switch (spot) {
-            case 1:
-                hasRolledOne();
-                break;
-            case 2:
-                hasRolledTwo();
-                break;
-            case 3:
-                hasRolledThree();
-                break;
-            case 4:
-                hasRolledFour();
-                break;
-            case 5:
-                hasRolledFive();
-                break;
-            case 6:
-                hasRolledSix();
-                break;
-            case 7:
-                hasRolledSeven();
-                break;
-            case 8:
-                hasRolledEight();
-                break;
-            case 9:
-                hasRolledNine();
-                break;
-            case 10:
-                hasRolledTen();
-                break;
-            case 11:
-                hasRolledEleven();
-                break;
-            case 12:
-                hasRolledTwelve();
-                break;
-            default:
-                break;
+        if (spot == whatSpotIsNeededNext())
+        {
+            // using a switch to call the corresponding boolean function to the interger arguement given. Update the boolean values of the member bools.
+            switch (spot)
+            {
+                case 1:
+                    hasRolled1 = true;
+                    break;
+                case 2:
+                    hasRolled2 = true;
+                    break;
+                case 3:
+                    hasRolled3 = true;
+                    break;
+                case 4:
+                    hasRolled4 = true;
+                    break;
+                case 5:
+                    hasRolled5 = true;
+                    break;
+                case 6:
+                    hasRolled6 = true;
+                    break;
+                case 7:
+                    hasRolled7 = true;
+                    break;
+                case 8:
+                    hasRolled8 = true;
+                    break;
+                case 9:
+                    hasRolled9 = true;
+                    break;
+                case 10:
+                    hasRolled10 = true;
+                    break;
+                case 11:
+                    hasRolled11 = true;
+                    break;
+                case 12:
+                    hasRolled12 = true;
+                    break;
+                default:
+                    break;
+            }
         }
     }
     
