@@ -53,6 +53,8 @@ namespace cs31
         Player mComputer;       // this Centennial's computer player
         Board  mBoard;          // this Centennial's game board
         bool   isHumanTurn;     // whose turn is it, human or computer?
+        
+        int lastPosition;
     };
     
 }

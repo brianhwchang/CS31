@@ -68,34 +68,117 @@ namespace cs31
         // let the human player randomly roll
         mHuman.roll();
         // look at what was rolled and update the board spots accordingly
-        mHuman.getDie1();
+        
+        int lastPosition = (mHuman.whatSpotIsNeededNext() - 2);
+        int currentPosition = (mHuman.whatSpotIsNeededNext() - 1);
+        
+        while (lastPosition != currentPosition) {
+            //testing all possible combinations for legal advancements.
+            lastPosition =(mHuman.whatSpotIsNeededNext() - 1);
+            mHuman.rolled(mHuman.getDie1().getValue());
+            mHuman.rolled(mHuman.getDie2().getValue());
+            mHuman.rolled(mHuman.getDie3().getValue());
+            mHuman.rolled(mHuman.getDie1().getValue() + mHuman.getDie2().getValue());
+            mHuman.rolled(mHuman.getDie2().getValue() + mHuman.getDie3().getValue());
+            mHuman.rolled(mHuman.getDie1().getValue() + mHuman.getDie3().getValue());
+            mHuman.rolled(mHuman.getDie1().getValue() + mHuman.getDie2().getValue() + mHuman.getDie3().getValue());
+            currentPosition = (mHuman.whatSpotIsNeededNext() - 1);
+        }
+        
+        
+        // Update board spot
+        //After all the .rolledfunctions have been carried out, we set the current human spot to nextspot - 1.
+        mBoard.setHumanSpot(currentPosition);
     }
-
-
 
 
     // CS 31 TODO: force a certain roll in the human's turn of the game by cheating...
     void Centennial::humanPlay( Die d1, Die d2, Die d3 )
     {
         // mark that it is the human's turn
+        isHumanTurn = true;
         // force the human player to cheat
+        mHuman.roll(d1, d2, d3);
         // look at what was rolled and update the board spots accordingly
+        //Probs need a loop here. Loop 7 times? One for each possible permutation since the .rolled() fxn only updates when valid.
+        
+        int lastPosition = (mHuman.whatSpotIsNeededNext() - 2);
+        int currentPosition = (mHuman.whatSpotIsNeededNext() - 1);
+        
+        while (lastPosition != currentPosition) {
+            //testing all possible combinations for legal advancements.
+            lastPosition =(mHuman.whatSpotIsNeededNext() - 1);
+            mHuman.rolled(mHuman.getDie1().getValue());
+            mHuman.rolled(mHuman.getDie2().getValue());
+            mHuman.rolled(mHuman.getDie3().getValue());
+            mHuman.rolled(mHuman.getDie1().getValue() + mHuman.getDie2().getValue());
+            mHuman.rolled(mHuman.getDie2().getValue() + mHuman.getDie3().getValue());
+            mHuman.rolled(mHuman.getDie1().getValue() + mHuman.getDie3().getValue());
+            mHuman.rolled(mHuman.getDie1().getValue() + mHuman.getDie2().getValue() + mHuman.getDie3().getValue());
+            currentPosition = (mHuman.whatSpotIsNeededNext() - 1);
+        }
+        
+        
+        // Update board spot
+        //After all the .rolledfunctions have been carried out, we set the current human spot to nextspot - 1.
+        mBoard.setHumanSpot(currentPosition);
     }
+
+
+
 
     // CS 31 TODO: randomly play a computer turn in the game
     void Centennial::computerPlay( )
     {
         // mark that it is no longer the human's turn
+        isHumanTurn = false;
         // let the computer player randomly roll
+        mComputer.roll();
         // look at what was rolled and update the board spots accordingly
+        int lastPosition = (mComputer.whatSpotIsNeededNext() - 2);
+        int currentPosition = (mComputer.whatSpotIsNeededNext() - 1);
+        
+        while (lastPosition != currentPosition) {
+            //testing all possible combinations for legal advancements.
+            lastPosition =(mComputer.whatSpotIsNeededNext() - 1);
+            mHuman.rolled(mComputer.getDie1().getValue());
+            mHuman.rolled(mComputer.getDie2().getValue());
+            mHuman.rolled(mComputer.getDie3().getValue());
+            mHuman.rolled(mComputer.getDie1().getValue() + mComputer.getDie2().getValue());
+            mHuman.rolled(mComputer.getDie2().getValue() + mComputer.getDie3().getValue());
+            mHuman.rolled(mComputer.getDie1().getValue() + mComputer.getDie3().getValue());
+            mHuman.rolled(mComputer.getDie1().getValue() + mComputer.getDie2().getValue() + mComputer.getDie3().getValue());
+            currentPosition = (mComputer.whatSpotIsNeededNext() - 1);
+        }
+        // Update board spot.
+        mBoard.setComputerSpot(currentPosition);
     }
     
     // CS 31 TODO: force a certain roll in the computer's turn of the game by cheating...
     void Centennial::computerPlay( Die d1, Die d2, Die d3 )
     {
         // mark that it is no longer the human's turn
-        // force the computer player to cheat
+        isHumanTurn = false;
+        // force the roll.
+        mComputer.roll(d1, d2, d3);
         // look at what was rolled and update the board spots accordingly
+        int lastPosition = (mComputer.whatSpotIsNeededNext() - 2);
+        int currentPosition = (mComputer.whatSpotIsNeededNext() - 1);
+        
+        while (lastPosition != currentPosition) {
+            //testing all possible combinations for legal advancements.
+            lastPosition =(mComputer.whatSpotIsNeededNext() - 1);
+            mHuman.rolled(mComputer.getDie1().getValue());
+            mHuman.rolled(mComputer.getDie2().getValue());
+            mHuman.rolled(mComputer.getDie3().getValue());
+            mHuman.rolled(mComputer.getDie1().getValue() + mComputer.getDie2().getValue());
+            mHuman.rolled(mComputer.getDie2().getValue() + mComputer.getDie3().getValue());
+            mHuman.rolled(mComputer.getDie1().getValue() + mComputer.getDie3().getValue());
+            mHuman.rolled(mComputer.getDie1().getValue() + mComputer.getDie2().getValue() + mComputer.getDie3().getValue());
+            currentPosition = (mComputer.whatSpotIsNeededNext() - 1);
+        }
+        // Update board spot.
+        mBoard.setComputerSpot(currentPosition);
     }
     
 
