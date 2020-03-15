@@ -60,7 +60,7 @@ namespace cs31
 
 
 
-    // CS 31 TODO: randomly play a human turn in the game
+    // randomly play a human turn in the game
     void Centennial::humanPlay( )
     {
         // mark that it is the human's turn
@@ -94,7 +94,7 @@ namespace cs31
     }
 
 
-    // CS 31 TODO: force a certain roll in the human's turn of the game by cheating...
+    // force a certain roll in the human's turn of the game by cheating...
     void Centennial::humanPlay( Die d1, Die d2, Die d3 )
     {
         // mark that it is the human's turn
@@ -132,7 +132,7 @@ namespace cs31
 
 
 
-    // CS 31 TODO: randomly play a computer turn in the game
+    // randomly play a computer turn in the game
     void Centennial::computerPlay( )
     {
         // mark that it is no longer the human's turn
@@ -163,7 +163,7 @@ namespace cs31
         mBoard.markComputerAsWinner();
     }
     
-    // CS 31 TODO: force a certain roll in the computer's turn of the game by cheating...
+    // force a certain roll in the computer's turn of the game by cheating...
     void Centennial::computerPlay( Die d1, Die d2, Die d3 )
     {
         // mark that it is no longer the human's turn
@@ -195,7 +195,7 @@ namespace cs31
     
 
 
-    // CS 31 TODO: determine the current state of the game
+    // determine the current state of the game
     // Officially, the human won if that player has rolled 12,11,10,9,8,7,6,5,4,3,2 & 1
     // Officially, the computer won if that player has rolled 12,11,10,9,8,7,6,5,4,3,2 & 1
     // If neither, then the game is still underway
