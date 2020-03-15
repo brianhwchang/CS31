@@ -83,7 +83,52 @@ int main()
         assert( b.isGameOver( ) == true );
         assert( b.isHumanWinner( ) == true );
     
-    
+        // Centennial test code
+        Centennial game;
+        assert( game.isGameOver( ) == false );
+        assert( game.determineGameOutcome( ) == Centennial::GAMENOTOVER );
+        human = game.getHuman( );
+        computer = game.getComputer( );
+        assert( human.whatSpotIsNeededNext( ) == 1 );
+        assert( computer.whatSpotIsNeededNext( ) == 1 );
+        d1.setValue( 1 );
+        d2.setValue( 2 );
+        d3.setValue( 3 );
+        d4.setValue( 4 );
+        d5.setValue( 5 );
+        d6.setValue( 6 );
+        game.humanPlay( d6, d5, d4 );
+        human = game.getHuman( );
+        assert( human.whatSpotIsNeededNext( ) == 1 );
+        game.computerPlay( d1, d2, d3 );
+        computer= game.getComputer( );
+        assert( computer.whatSpotIsNeededNext( ) == 7 );
+        game.humanPlay( d4, d2, d1 );
+        human = game.getHuman( );
+        assert( human.whatSpotIsNeededNext( ) == 8 );
+        game.computerPlay( d5, d2, d1 );
+        computer = game.getComputer( );
+        assert( computer.whatSpotIsNeededNext( ) == 9 );
+        game.humanPlay( d6, d2, d3 );
+        human = game.getHuman( );
+        assert( human.whatSpotIsNeededNext( ) == 10 );
+        game.computerPlay( d1, d2, d3 );
+        computer = game.getComputer( );
+        assert( computer.whatSpotIsNeededNext( ) == 9 );
+        game.humanPlay( d4, d5, d6 );
+        human = game.getHuman( );
+        assert( human.whatSpotIsNeededNext( ) == 12 );
+        game.computerPlay( d3, d2, d1 );
+        computer = game.getComputer( );
+        assert( computer.whatSpotIsNeededNext( ) == 9 );
+        assert( game.isGameOver( ) == false );
+        assert( game.determineGameOutcome( ) == Centennial::GAMENOTOVER );
+        game.humanPlay( d2, d4, d6 );
+        assert( game.isGameOver( ) == true );
+        assert( game.determineGameOutcome( ) == Centennial::HUMANWONGAME );
+
+        cout << "all tests passed!" << endl;
+        return 0;
 }
 
 

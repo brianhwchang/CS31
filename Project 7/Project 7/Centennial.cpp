@@ -85,10 +85,12 @@ namespace cs31
             currentPosition = (mHuman.whatSpotIsNeededNext() - 1);
         }
         
-        
         // Update board spot
         //After all the .rolledfunctions have been carried out, we set the current human spot to nextspot - 1.
         mBoard.setHumanSpot(currentPosition);
+        
+        if (mBoard.getHumanSpot() == 12) //setting human as winner if game over.
+        mBoard.markHumanAsWinner();
     }
 
 
@@ -122,6 +124,9 @@ namespace cs31
         // Update board spot
         //After all the .rolledfunctions have been carried out, we set the current human spot to nextspot - 1.
         mBoard.setHumanSpot(currentPosition);
+        
+        if (mBoard.getHumanSpot() == 12) //setting human as winner if game over.
+        mBoard.markHumanAsWinner();
     }
 
 
@@ -141,17 +146,21 @@ namespace cs31
         while (lastPosition != currentPosition) {
             //testing all possible combinations for legal advancements.
             lastPosition =(mComputer.whatSpotIsNeededNext() - 1);
-            mHuman.rolled(mComputer.getDie1().getValue());
-            mHuman.rolled(mComputer.getDie2().getValue());
-            mHuman.rolled(mComputer.getDie3().getValue());
-            mHuman.rolled(mComputer.getDie1().getValue() + mComputer.getDie2().getValue());
-            mHuman.rolled(mComputer.getDie2().getValue() + mComputer.getDie3().getValue());
-            mHuman.rolled(mComputer.getDie1().getValue() + mComputer.getDie3().getValue());
-            mHuman.rolled(mComputer.getDie1().getValue() + mComputer.getDie2().getValue() + mComputer.getDie3().getValue());
+            mComputer.rolled(mComputer.getDie1().getValue());
+            mComputer.rolled(mComputer.getDie2().getValue());
+            mComputer.rolled(mComputer.getDie3().getValue());
+            mComputer.rolled(mComputer.getDie1().getValue() + mComputer.getDie2().getValue());
+            mComputer.rolled(mComputer.getDie2().getValue() + mComputer.getDie3().getValue());
+            mComputer.rolled(mComputer.getDie1().getValue() + mComputer.getDie3().getValue());
+            mComputer.rolled(mComputer.getDie1().getValue() + mComputer.getDie2().getValue() + mComputer.getDie3().getValue());
             currentPosition = (mComputer.whatSpotIsNeededNext() - 1);
         }
         // Update board spot.
+        
         mBoard.setComputerSpot(currentPosition);
+        
+        if (mBoard.getComputerSpot() == 12) //setting human as winner if game over.
+        mBoard.markComputerAsWinner();
     }
     
     // CS 31 TODO: force a certain roll in the computer's turn of the game by cheating...
@@ -168,17 +177,20 @@ namespace cs31
         while (lastPosition != currentPosition) {
             //testing all possible combinations for legal advancements.
             lastPosition =(mComputer.whatSpotIsNeededNext() - 1);
-            mHuman.rolled(mComputer.getDie1().getValue());
-            mHuman.rolled(mComputer.getDie2().getValue());
-            mHuman.rolled(mComputer.getDie3().getValue());
-            mHuman.rolled(mComputer.getDie1().getValue() + mComputer.getDie2().getValue());
-            mHuman.rolled(mComputer.getDie2().getValue() + mComputer.getDie3().getValue());
-            mHuman.rolled(mComputer.getDie1().getValue() + mComputer.getDie3().getValue());
-            mHuman.rolled(mComputer.getDie1().getValue() + mComputer.getDie2().getValue() + mComputer.getDie3().getValue());
+            mComputer.rolled(mComputer.getDie1().getValue());
+            mComputer.rolled(mComputer.getDie2().getValue());
+            mComputer.rolled(mComputer.getDie3().getValue());
+            mComputer.rolled(mComputer.getDie1().getValue() + mComputer.getDie2().getValue());
+            mComputer.rolled(mComputer.getDie2().getValue() + mComputer.getDie3().getValue());
+            mComputer.rolled(mComputer.getDie1().getValue() + mComputer.getDie3().getValue());
+            mComputer.rolled(mComputer.getDie1().getValue() + mComputer.getDie2().getValue() + mComputer.getDie3().getValue());
             currentPosition = (mComputer.whatSpotIsNeededNext() - 1);
         }
         // Update board spot.
         mBoard.setComputerSpot(currentPosition);
+        
+        if (mBoard.getComputerSpot() == 12) //setting human as winner if game over.
+        mBoard.markComputerAsWinner();
     }
     
 
@@ -190,9 +202,9 @@ namespace cs31
     Centennial::GAMEOUTCOME  Centennial::determineGameOutcome( ) const
     {
         // for now, just to get it to build...
-        if ( mBoard.isGameOver() && mBoard.isHumanWinner() == true )
+        if ( mBoard.isGameOver() == true && mBoard.isHumanWinner() == true )
             return GAMEOUTCOME::HUMANWONGAME;
-        else if ( mBoard.isGameOver() && mBoard.isHumanWinner() == false )
+        else if ( mBoard.isGameOver() == true && mBoard.isHumanWinner() == false )
             return GAMEOUTCOME::COMPUTERWONGAME;
         else
             return GAMEOUTCOME::GAMENOTOVER;
@@ -203,10 +215,17 @@ namespace cs31
     bool Centennial::isGameOver()
     {
         // if either human or computer reaches spot 12, set isGameOver = true.
-        if (mBoard.getHumanSpot()==12 || mBoard.getComputerSpot()==12)
+        if (mBoard.getHumanSpot() == 12)
+        {
+            mBoard.setGameOver(true);
             return true;
-        else
-            return false;
+        }
+        else if (mBoard.getComputerSpot() == 12)
+        {
+            mBoard.setGameOver(true);
+            return true;
+        }
+        return mBoard.isGameOver();
     }
 
 

@@ -49,7 +49,7 @@ namespace cs31
     {
         // for now to get it to build...
         //because boolean values return 1 if true, I can just add the bools together to get the current spot we're at, then add 1.
-        int result = (hasRolled1 + hasRolled2 + hasRolled3 + hasRolled4 + hasRolled5 + hasRolled6 + hasRolled7 + hasRolled8 + hasRolled9 + hasRolled10 + hasRolled11 + 1);
+        int result = (hasRolled1 + hasRolled2 + hasRolled3 + hasRolled4 + hasRolled5 + hasRolled6 + hasRolled7 + hasRolled8 + hasRolled9 + hasRolled10 + hasRolled11 + hasRolled12 + 1);
         return( result );
     }
     
